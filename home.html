@@ -8,13 +8,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Reset & Styling */
-        body {
-            font-family: 'Poppins', sans-serif;
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
+            overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
             background: #080706; /* AromaVault luxury black */
             color: #FFFFFF;
-            overflow-x: hidden;
         }
 
         /* HEADER: Premium Sticky Matte Header */
@@ -25,7 +33,8 @@
             text-align: center; 
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            width: 100%;
         }
         header h1 { 
             font-family: 'Bebas Neue', sans-serif;
@@ -36,7 +45,7 @@
         }
         nav { margin-top: 10px; }
         nav a { 
-            margin: 0 20px; 
+            margin: 0 15px; 
             text-decoration: none; 
             color: #A3A3A3; 
             font-weight: 500; 
@@ -49,7 +58,7 @@
             transform: scale(1.1); 
         }
 
-        /* ⚡ SPARKS & NEON LINE EFFECT OVERLAY ⚡ */
+        /* SPARKS & NEON LINE EFFECT OVERLAY */
         .spark-line-container {
             position: absolute;
             bottom: 0;
@@ -66,7 +75,7 @@
             top: 2px;
             left: 0;
             width: 100%;
-            height: 150px; /* Jaha tak sparks girenge */
+            height: 150px;
             pointer-events: none;
             overflow: hidden;
         }
@@ -85,7 +94,6 @@
             animation-delay: var(--delay);
         }
 
-        /* Sparks Falling Animation */
         @keyframes fallAndFade {
             0% {
                 top: 0;
@@ -102,11 +110,11 @@
             }
         }
 
-        /* ✨ AROMAVAULT PREMIUM PERFUME HERO */
+        /* AROMAVAULT PREMIUM PERFUME HERO / BILLBOARD */
         .home-billboard {
             width: 100%;
             height: min(720px, 78vh);
-            min-height: 520px;
+            min-height: 480px;
             background-image: url('111.png');
             background-position: center center;
             background-size: cover;
@@ -117,7 +125,6 @@
             box-shadow: inset 0 -80px 100px rgba(0,0,0,.45);
         }
 
-        /* Very subtle vignette only — the billboard artwork stays visible. */
         .home-billboard::after {
             content: '';
             position: absolute;
@@ -129,22 +136,6 @@
             z-index: 1;
         }
 
-        /* The generated billboard already contains its own text.
-           Keep this layer empty so old VibeWear text cannot cover it. */
-        .billboard-content {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .billboard-content h2,
-        .billboard-content p,
-        .billboard-content .cta-btn {
-            display: none;
-        }
-
-        /* Small optional floating CTA, positioned away from the artwork text. */
         .hero-shop-link {
             position: absolute;
             left: 5.5%;
@@ -174,25 +165,6 @@
             box-shadow: 0 8px 30px rgba(212,175,55,.28);
         }
 
-        @media (max-width: 768px) {
-            .home-billboard {
-                height: 62vh;
-                min-height: 430px;
-                background-position: center;
-            }
-
-            .hero-shop-link {
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: 6%;
-                white-space: nowrap;
-            }
-
-            .hero-shop-link:hover {
-                transform: translateX(-50%) translateY(-2px);
-            }
-        }
-
         /* PRODUCTS SECTION */
         .products-section {
             max-width: 1200px;
@@ -208,14 +180,12 @@
             padding-left: 15px;
         }
 
-        /* GRID LAYOUT FOR PRODUCTS */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
-        /* PRODUCT CARD DESIGN */
         .product-card {
             background: #161616;
             border: 1px solid rgba(255, 255, 255, 0.03);
@@ -293,30 +263,33 @@
             border-color: #FFFFFF;
         }
 
-        /* PREMIUM FLOATING WHATSAPP ICON */
+        /* FIXED FLOATING WHATSAPP ICON */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             background-color: #25D366;
-            color: #FFF;
-            width: 60px;
-            height: 60px;
+            color: #FFF !important;
+            width: 58px;
+            height: 58px;
             border-radius: 50%;
             text-align: center;
-            font-size: 30px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+            z-index: 99999; /* Higher z-index to stay on top */
             display: flex;
             justify-content: center;
             align-items: center;
             text-decoration: none;
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
+        .whatsapp-float i {
+            font-size: 32px;
+            line-height: 1;
+            font-weight: 400;
+        }
         .whatsapp-float:hover {
-            transform: scale(1.1) rotate(10deg);
+            transform: scale(1.1) rotate(8deg);
             background-color: #128C7E;
-            color: #FFF;
         }
 
         /* Footer */
@@ -325,129 +298,92 @@
             color: #666; 
             text-align: center; 
             padding: 30px; 
-            margin-top: 100px; 
+            margin-top: 80px; 
             font-size: 13px; 
             border-top: 1px solid rgba(255,255,255,0.02); 
         }
 
-        /* RESPONSIVE MOBILE FIX — 2 PRODUCT COLUMNS + FULL BILLBOARD */
+        /* RESPONSIVE MOBILE FIX (MOBILE SCREEN ADJUSTMENTS) */
         @media (max-width: 768px) {
-            /* Header: compact so it does not eat the whole screen */
             header {
                 padding: 14px 10px 18px;
             }
             header h1 {
-                font-size: 32px;
-                letter-spacing: 4px;
+                font-size: 30px;
+                letter-spacing: 3px;
             }
             nav {
-                margin-top: 7px;
-                white-space: nowrap;
+                margin-top: 6px;
             }
             nav a {
-                margin: 0 7px;
+                margin: 0 6px;
                 font-size: 12px;
             }
 
-            /* Show the complete billboard on mobile instead of cropping its sides */
+            /* Billboard Fix: Uses contain so sides never cut on phones */
             .home-billboard {
-                height: auto;
-                min-height: 0;
-                aspect-ratio: 16 / 9;
-                background-size: 100% 100%;
-                background-position: center;
+                height: 55vh;
+                min-height: 320px;
+                background-size: contain;
+                background-position: center top;
+                background-color: #080706;
             }
 
             .hero-shop-link {
                 left: 50%;
-                bottom: 5%;
+                bottom: 8%;
                 transform: translateX(-50%);
-                padding: 9px 13px;
-                gap: 6px;
-                font-size: 9px;
+                padding: 10px 16px;
+                gap: 8px;
+                font-size: 11px;
                 letter-spacing: 1px;
                 white-space: nowrap;
             }
+
             .hero-shop-link:hover {
                 transform: translateX(-50%) translateY(-2px);
             }
 
-            /* Products: exactly 2 cards per row on phones */
+            /* Products Grid */
             .products-section {
-                margin: 35px auto;
-                padding: 0 10px;
+                margin: 30px auto;
+                padding: 0 12px;
             }
             .section-title {
-                font-size: 30px;
-                line-height: 1.1;
-                margin-bottom: 22px;
-                border-left-width: 3px;
-                padding-left: 10px;
+                font-size: 28px;
+                margin-bottom: 20px;
             }
             .products-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
             .product-card {
-                min-width: 0;
                 padding: 10px;
-                border-radius: 9px;
             }
             .product-img-box {
-                height: 185px;
-                margin-bottom: 10px;
-                border-radius: 7px;
-            }
-            .product-img-box img {
-                max-width: 94%;
-                max-height: 94%;
-            }
-            .product-brand {
-                font-size: 8px;
-                letter-spacing: 1px;
-                margin-bottom: 4px;
+                height: 170px;
             }
             .product-title {
                 font-size: 13px;
-                line-height: 1.25;
-                margin-bottom: 6px;
             }
             .product-price {
                 font-size: 15px;
-                margin-bottom: 9px;
             }
             .shop-now-btn {
-                padding: 9px 5px;
-                font-size: 9px;
-                letter-spacing: .7px;
+                padding: 8px 4px;
+                font-size: 10px;
             }
 
-            /* WhatsApp button: fully visible on small screens */
+            /* WhatsApp Button Fix for Mobile */
             .whatsapp-float {
                 width: 52px;
                 height: 52px;
-                font-size: 26px;
-                bottom: 14px;
-                right: 14px;
-                z-index: 9999;
+                bottom: 20px;
+                right: 20px;
             }
-
-            footer {
-                margin-top: 45px;
-                padding: 24px 12px;
-                font-size: 11px;
+            .whatsapp-float i {
+                font-size: 28px;
             }
-        }
-
-        @media (max-width: 380px) {
-            header h1 { font-size: 28px; }
-            nav a { margin: 0 5px; font-size: 11px; }
-            .products-grid { gap: 9px; }
-            .product-card { padding: 8px; }
-            .product-img-box { height: 155px; }
-            .product-title { font-size: 12px; }
-            .product-price { font-size: 14px; }
-            .shop-now-btn { font-size: 8px; }
         }
     </style>
 </head>
@@ -466,7 +402,6 @@
     </header>
 
     <div class="home-billboard" aria-label="AromaVault premium fragrance billboard">
-        <div class="billboard-content"></div>
         <a href="#collection" class="hero-shop-link">Shop Fragrances <span>→</span></a>
     </div>
 
@@ -586,8 +521,9 @@
         </div>
     </div>
 
+    <!-- FLOATING WHATSAPP BUTTON -->
     <a href="https://wa.me/923317744660" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+        <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <footer>
@@ -596,18 +532,16 @@
 
     <script>
         const container = document.getElementById('sparksContainer');
-        const sparkCount = 40; // Total kitne sparks girenge
+        const sparkCount = 40;
 
         for (let i = 0; i < sparkCount; i++) {
             const spark = document.createElement('div');
             spark.classList.add('spark');
             
-            // Randomly screen par spread karne ke liye
             spark.style.left = `${Math.random() * 100}%`;
             
-            // Random timing patterns for realism
-            const duration = 1 + Math.random() * 1.5; // 1s to 2.5s
-            const delay = Math.random() * 2; // 0s to 2s
+            const duration = 1 + Math.random() * 1.5;
+            const delay = Math.random() * 2;
             
             spark.style.setProperty('--fall-duration', `${duration}s`);
             spark.style.setProperty('--delay', `${delay}s`);
