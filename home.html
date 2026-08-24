@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<style>@media (max-width: 768px) {
-    .products-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}</style>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -181,21 +176,15 @@
 
         @media (max-width: 768px) {
             .home-billboard {
-                height: 56.25vw;
-                min-height: 0;
-                max-height: none;
-                background-size: 100% 100%;
-                background-position: center top;
+                height: 62vh;
+                min-height: 430px;
+                background-position: center;
             }
 
             .hero-shop-link {
                 left: 50%;
                 transform: translateX(-50%);
-                bottom: 5%;
-                padding: 9px 14px;
-                gap: 6px;
-                font-size: 10px;
-                letter-spacing: 1.2px;
+                bottom: 6%;
                 white-space: nowrap;
             }
 
@@ -341,117 +330,124 @@
             border-top: 1px solid rgba(255,255,255,0.02); 
         }
 
-        /* Prevent horizontal overflow on small screens */
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        img {
-            max-width: 100%;
-        }
-
-        /* Responsive Fixes */
+        /* RESPONSIVE MOBILE FIX — 2 PRODUCT COLUMNS + FULL BILLBOARD */
         @media (max-width: 768px) {
+            /* Header: compact so it does not eat the whole screen */
             header {
-                padding: 15px 10px 16px;
+                padding: 14px 10px 18px;
             }
-
             header h1 {
-                font-size: 30px;
-                letter-spacing: 3px;
+                font-size: 32px;
+                letter-spacing: 4px;
             }
-
             nav {
                 margin-top: 7px;
-                display: flex;
-                justify-content: center;
-                gap: 4px;
-                flex-wrap: wrap;
+                white-space: nowrap;
             }
-
             nav a {
                 margin: 0 7px;
                 font-size: 12px;
             }
 
+            /* Show the complete billboard on mobile instead of cropping its sides */
             .home-billboard {
-                height: 56.25vw;
+                height: auto;
                 min-height: 0;
+                aspect-ratio: 16 / 9;
                 background-size: 100% 100%;
-                background-position: center top;
+                background-position: center;
             }
 
-            .billboard-content h2 { font-size: 46px; }
-            .billboard-content p { font-size: 16px; }
+            .hero-shop-link {
+                left: 50%;
+                bottom: 5%;
+                transform: translateX(-50%);
+                padding: 9px 13px;
+                gap: 6px;
+                font-size: 9px;
+                letter-spacing: 1px;
+                white-space: nowrap;
+            }
+            .hero-shop-link:hover {
+                transform: translateX(-50%) translateY(-2px);
+            }
 
+            /* Products: exactly 2 cards per row on phones */
+            .products-section {
+                margin: 35px auto;
+                padding: 0 10px;
+            }
             .section-title {
                 font-size: 30px;
-                text-align: left;
-                border-left: 3px solid #d4af37;
-                padding-left: 12px;
+                line-height: 1.1;
+                margin-bottom: 22px;
+                border-left-width: 3px;
+                padding-left: 10px;
             }
-
-            .products-section {
-                padding: 35px 12px;
-            }
-
             .products-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 12px;
             }
-
             .product-card {
-                padding: 10px;
                 min-width: 0;
+                padding: 10px;
+                border-radius: 9px;
             }
-
             .product-img-box {
                 height: 185px;
+                margin-bottom: 10px;
+                border-radius: 7px;
             }
-
             .product-img-box img {
-                max-width: 90%;
-                max-height: 90%;
+                max-width: 94%;
+                max-height: 94%;
             }
-
+            .product-brand {
+                font-size: 8px;
+                letter-spacing: 1px;
+                margin-bottom: 4px;
+            }
             .product-title {
-                font-size: 14px;
-                line-height: 1.3;
+                font-size: 13px;
+                line-height: 1.25;
+                margin-bottom: 6px;
             }
-
             .product-price {
-                font-size: 17px;
+                font-size: 15px;
+                margin-bottom: 9px;
             }
-
             .shop-now-btn {
-                padding: 10px 8px;
-                font-size: 10px;
+                padding: 9px 5px;
+                font-size: 9px;
+                letter-spacing: .7px;
             }
 
+            /* WhatsApp button: fully visible on small screens */
             .whatsapp-float {
                 width: 52px;
                 height: 52px;
-                font-size: 25px;
-                bottom: 16px;
-                right: 16px;
+                font-size: 26px;
+                bottom: 14px;
+                right: 14px;
                 z-index: 9999;
+            }
+
+            footer {
+                margin-top: 45px;
+                padding: 24px 12px;
+                font-size: 11px;
             }
         }
 
         @media (max-width: 380px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .product-img-box {
-                height: 230px;
-            }
-
-            .hero-shop-link {
-                font-size: 9px;
-                padding: 8px 11px;
-            }
+            header h1 { font-size: 28px; }
+            nav a { margin: 0 5px; font-size: 11px; }
+            .products-grid { gap: 9px; }
+            .product-card { padding: 8px; }
+            .product-img-box { height: 155px; }
+            .product-title { font-size: 12px; }
+            .product-price { font-size: 14px; }
+            .shop-now-btn { font-size: 8px; }
         }
     </style>
 </head>
