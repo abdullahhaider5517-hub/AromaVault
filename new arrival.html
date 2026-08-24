@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AromaVault — New Arrivals</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% -10%,rgba(212,175,55,.12),transparent 34%),
+        #080706;
+    color:#fff;
+    font-family:Poppins,sans-serif;
+    overflow-x:hidden;
+}
+
+/* GOLDEN FALLING PARTICLES */
+#goldDust{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:1;
+}
+
+.gold-dot{
+    position:absolute;
+    top:-20px;
+    width:var(--size);
+    height:var(--size);
+    border-radius:50%;
+    background:#d4af37;
+    box-shadow:0 0 8px rgba(212,175,55,.9),0 0 18px rgba(212,175,55,.35);
+    opacity:var(--opacity);
+    animation:fall var(--duration) linear infinite;
+    animation-delay:var(--delay);
+}
+
+@keyframes fall{
+    0%{transform:translate3d(0,-30px,0) rotate(0deg);opacity:0}
+    10%{opacity:var(--opacity)}
+    90%{opacity:var(--opacity)}
+    100%{transform:translate3d(var(--drift),110vh,0) rotate(360deg);opacity:0}
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    text-align:center;
+    padding:22px;
+    background:rgba(9,8,7,.88);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #332b19;
+}
+
+header h1{
+    margin:0;
+    color:#f1d58a;
+    font:700 38px "Playfair Display";
+    letter-spacing:5px;
+}
+
+nav{margin-top:10px}
+
+nav a{
+    color:#aaa;
+    text-decoration:none;
+    margin:0 15px;
+    font-size:14px;
+    transition:.25s;
+}
+
+nav a:hover{color:#f1d58a}
+
+main{
+    position:relative;
+    z-index:2;
+}
+
+.arrival{
+    min-height:calc(100vh - 116px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:70px 20px;
+}
+
+.box{
+    width:min(900px,100%);
+    padding:70px 35px;
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:18px;
+    background:
+        linear-gradient(145deg,rgba(212,175,55,.06),rgba(255,255,255,.015)),
+        rgba(12,10,8,.76);
+    box-shadow:0 25px 90px rgba(0,0,0,.55), inset 0 0 60px rgba(212,175,55,.025);
+}
+
+.eyebrow{
+    color:#d4af37;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+h2{
+    margin:0;
+    font:700 clamp(48px,8vw,92px)/.95 "Playfair Display";
+    letter-spacing:1px;
+}
+
+.gold{
+    color:#d4af37;
+}
+
+.line{
+    width:90px;
+    height:1px;
+    margin:28px auto;
+    background:#d4af37;
+    box-shadow:0 0 12px rgba(212,175,55,.6);
+}
+
+.lead{
+    max-width:650px;
+    margin:0 auto;
+    color:#d8d3c7;
+    font-size:17px;
+    line-height:1.9;
+}
+
+.teaser{
+    margin:30px auto 0;
+    max-width:700px;
+    color:#f1d58a;
+    font:600 23px/1.5 "Playfair Display";
+    letter-spacing:.4px;
+}
+
+.sub{
+    margin:14px auto 0;
+    color:#8f8a80;
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+.actions{
+    margin-top:38px;
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 25px;
+    border-radius:6px;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:1.7px;
+    font-size:11px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.btn-gold{
+    background:#d4af37;
+    color:#080706;
+    border:1px solid #d4af37;
+}
+
+.btn-gold:hover{
+    background:#f1d58a;
+    box-shadow:0 0 25px rgba(212,175,55,.25);
+    transform:translateY(-2px);
+}
+
+.btn-outline{
+    color:#f1d58a;
+    border:1px solid #80672b;
+    background:#0b0907;
+}
+
+.btn-outline:hover{
+    background:#d4af37;
+    color:#080706;
+    transform:translateY(-2px);
+}
+
+footer{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    color:#666;
+    padding:30px;
+    border-top:1px solid #181614;
+    font-size:12px;
+}
+
+.whatsapp{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 8px 28px rgba(37,211,102,.35);
+    z-index:20;
+    transition:.25s;
+}
+
+.whatsapp:hover{
+    transform:scale(1.08);
+    box-shadow:0 10px 35px rgba(37,211,102,.5);
+}
+
+.whatsapp svg{
+    width:30px;
+    height:30px;
+    fill:#fff;
+}
+
+@media(max-width:700px){
+    header h1{font-size:30px}
+    nav a{margin:0 8px;font-size:12px}
+    .box{padding:55px 22px}
+    .lead{font-size:15px}
+    .teaser{font-size:20px}
+    .whatsapp{right:16px;bottom:16px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="goldDust"></div>
+
+<header>
+    <h1>AROMA VAULT</h1>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="new arrival.html">New Arrivals</a>
+        <a href="https://wa.me/923317744660" target="_blank">Contact</a>
+    </nav>
+</header>
+
+<main>
+<section class="arrival">
+    <div class="box">
+        <div class="eyebrow">The Vault Is Preparing Something Special</div>
+
+        <h2>NEW<br><span class="gold">ARRIVALS</span></h2>
+
+        <div class="line"></div>
+
+        <p class="lead">
+            Some fragrances are made to be noticed.
+            Others are made to be remembered.
+            Our next collection is being carefully prepared for the ones
+            who never settle for an ordinary scent.
+        </p>
+
+        <p class="teaser">
+            “A new signature is coming.<br>
+            Will you be among the first to wear it?”
+        </p>
+
+        <p class="sub">
+            NEW SCENTS • DEEPER NOTES • UNFORGETTABLE PRESENCE
+        </p>
+
+        <div class="actions">
+            <a class="btn btn-gold" href="https://wa.me/923317744660?text=Hi%20AromaVault%2C%20I%20want%20to%20know%20when%20the%20new%20arrivals%20launch." target="_blank">
+                Notify Me First
+            </a>
+
+            <a class="btn btn-outline" href="./home.html" onclick="window.location.href='./home.html'; return false;">
+                Explore Current Collection
+            </a>
+        </div>
+    </div>
+</section>
+</main>
+
+<a class="whatsapp"
+   href="https://wa.me/923317744660"
+   target="_blank"
+   aria-label="Chat with AromaVault on WhatsApp"
+   title="Chat with AromaVault">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M19.11 17.01c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.2-.59.07-.27-.14-1.12-.41-2.13-1.31-.79-.7-1.32-1.56-1.47-1.82-.15-.27-.02-.41.11-.54.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16-.01-.34-.01-.52-.01s-.48.07-.73.34c-.25.27-.95.93-.95 2.27s.97 2.63 1.11 2.81c.14.18 1.91 2.92 4.63 4.09.65.28 1.16.45 1.56.58.65.21 1.24.18 1.71.11.52-.08 1.58-.65 1.8-1.28.22-.63.22-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/>
+        <path d="M16.03 3.2c-7.05 0-12.78 5.73-12.78 12.78 0 2.25.59 4.45 1.71 6.39L3.14 28.8l6.58-1.73a12.73 12.73 0 0 0 6.31 1.67h.01c7.04 0 12.77-5.73 12.77-12.77S23.08 3.2 16.03 3.2zm0 23.45h-.01c-1.99 0-3.94-.54-5.64-1.56l-.4-.24-3.9 1.03 1.04-3.8-.26-.41a10.64 10.64 0 0 1-1.63-5.68c0-5.89 4.8-10.69 10.7-10.69 2.85 0 5.53 1.11 7.55 3.13a10.63 10.63 0 0 1 3.13 7.56c0 5.88-4.8 10.66-10.68 10.66z"/>
+    </svg>
+</a>
+
+<footer>
+    © 2026 AromaVault — Luxury Scents, Made Accessible.
+</footer>
+
+<script>
+const dust = document.getElementById("goldDust");
+
+for(let i=0;i<65;i++){
+    const dot = document.createElement("span");
+    dot.className = "gold-dot";
+
+    const size = (Math.random()*3.2+1).toFixed(1)+"px";
+    const duration = (Math.random()*8+6).toFixed(2)+"s";
+    const delay = (-Math.random()*14).toFixed(2)+"s";
+    const opacity = (Math.random()*.55+.25).toFixed(2);
+    const drift = ((Math.random()-.5)*150).toFixed(0)+"px";
+
+    dot.style.left = (Math.random()*100).toFixed(2)+"%";
+    dot.style.setProperty("--size",size);
+    dot.style.setProperty("--duration",duration);
+    dot.style.setProperty("--delay",delay);
+    dot.style.setProperty("--opacity",opacity);
+    dot.style.setProperty("--drift",drift);
+
+    dust.appendChild(dot);
+}
+</script>
+
+</body>
+</html>

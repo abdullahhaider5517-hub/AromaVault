@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>AromaVault — Premium Inspired Fragrances</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+background:#080706;
+color:#fff;
+font-family:Poppins,sans-serif;
+overflow-x:hidden
+}
+
+/* GOLD PARTICLES */
+#gold-particles{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:1;
+overflow:hidden
+}
+
+.gold-dot{
+position:absolute;
+top:-20px;
+width:3px;
+height:3px;
+border-radius:50%;
+background:#d4af37;
+box-shadow:0 0 5px #d4af37,0 0 12px rgba(212,175,55,.75);
+opacity:.8;
+animation:goldFall linear infinite
+}
+
+.gold-dot.small{
+width:2px;
+height:2px;
+opacity:.6
+}
+
+.gold-dot.large{
+width:4px;
+height:4px;
+box-shadow:0 0 7px #f1d58a,0 0 16px rgba(212,175,55,.7)
+}
+
+@keyframes goldFall{
+0%{
+transform:translate3d(0,-30px,0);
+opacity:0
+}
+10%{opacity:.8}
+50%{opacity:.65}
+90%{opacity:.8}
+100%{
+transform:translate3d(45px,110vh,0);
+opacity:0
+}
+}
+
+/* HEADER */
+header{
+text-align:center;
+padding:22px 20px 20px;
+background:rgba(9,8,7,.92);
+border-bottom:1px solid #332b19;
+position:sticky;
+top:0;
+z-index:20;
+backdrop-filter:blur(10px)
+}
+
+header h1{
+margin:0;
+color:#f1d58a;
+font:700 38px "Playfair Display",serif;
+letter-spacing:5px;
+text-shadow:0 0 18px rgba(212,175,55,.12)
+}
+
+nav{margin-top:10px}
+
+nav a{
+color:#aaa;
+text-decoration:none;
+margin:0 15px;
+font-size:14px;
+transition:.25s ease
+}
+
+nav a:hover{
+color:#f1d58a
+}
+
+/* HERO */
+.hero{
+width:100%;
+aspect-ratio:16/9;
+min-height:420px;
+background:
+linear-gradient(90deg,rgba(8,7,6,.18),rgba(8,7,6,.04)),
+url("111.png") center/cover no-repeat;
+position:relative;
+border-bottom:1px solid #d4af37;
+z-index:2
+}
+
+.hero:after{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(
+to bottom,
+rgba(8,7,6,.05),
+transparent 60%,
+rgba(8,7,6,.55)
+);
+pointer-events:none
+}
+
+.hero a{
+position:absolute;
+left:5%;
+bottom:7%;
+z-index:3;
+padding:13px 23px;
+background:rgba(10,9,8,.88);
+border:1px solid #d4af37;
+color:#f1d58a;
+text-decoration:none;
+text-transform:uppercase;
+letter-spacing:2px;
+font-size:12px;
+font-weight:700;
+transition:.3s ease
+}
+
+.hero a:hover{
+background:#d4af37;
+color:#080706;
+box-shadow:0 0 25px rgba(212,175,55,.3);
+transform:translateY(-2px)
+}
+
+/* SECTION */
+.section{
+max-width:1200px;
+margin:60px auto;
+padding:0 20px;
+position:relative;
+z-index:2
+}
+
+.section h2{
+font:700 40px "Playfair Display",serif;
+border-left:3px solid #d4af37;
+padding-left:15px;
+margin-bottom:30px;
+color:#f1d58a
+}
+
+/* PRODUCT GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+gap:28px
+}
+
+/* PRODUCT CARD */
+.card{
+background:rgba(18,17,15,.94);
+border:1px solid #302719;
+border-radius:12px;
+padding:18px;
+transition:.35s ease;
+position:relative;
+overflow:hidden
+}
+
+.card:before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:60%;
+height:1px;
+background:
+linear-gradient(
+90deg,
+transparent,
+#f1d58a,
+transparent
+);
+transition:.5s ease
+}
+
+.card:hover:before{
+left:120%
+}
+
+.card:hover{
+transform:translateY(-7px);
+border-color:#8f7028;
+box-shadow:0 15px 35px rgba(0,0,0,.35)
+}
+
+/* PRODUCT IMAGE */
+.pic{
+height:310px;
+background:#090909;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden
+}
+
+.pic img{
+max-width:90%;
+max-height:92%;
+object-fit:contain;
+transition:.4s ease
+}
+
+.card:hover .pic img{
+transform:scale(1.04)
+}
+
+/* PRODUCT DETAILS */
+.brand{
+color:#d4af37;
+font-size:10px;
+font-weight:700;
+letter-spacing:2px;
+margin-top:14px
+}
+
+.name{
+font-size:18px;
+font-weight:600;
+margin:6px 0;
+line-height:1.4
+}
+
+.price{
+font-size:20px;
+color:#f1d58a;
+font-weight:700;
+margin-bottom:14px
+}
+
+.price-note{
+font-size:11px;
+color:#888;
+margin-top:-8px;
+margin-bottom:14px
+}
+
+/* BUTTON */
+.btn{
+display:block;
+text-align:center;
+padding:12px;
+border:1px solid #444;
+color:#fff;
+text-decoration:none;
+border-radius:6px;
+font-size:12px;
+font-weight:700;
+letter-spacing:1.5px;
+text-transform:uppercase;
+transition:.3s ease
+}
+
+.btn:hover{
+background:#d4af37;
+color:#080706;
+border-color:#d4af37
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+color:#666;
+padding:30px;
+margin-top:70px;
+border-top:1px solid #181614;
+position:relative;
+z-index:2
+}
+
+/* WHATSAPP */
+.whatsapp-float{
+position:fixed;
+right:24px;
+bottom:24px;
+width:60px;
+height:60px;
+border-radius:50%;
+background:#25D366;
+display:flex;
+align-items:center;
+justify-content:center;
+text-decoration:none;
+z-index:9999;
+box-shadow:
+0 8px 25px rgba(0,0,0,.45),
+0 0 0 0 rgba(37,211,102,.45);
+animation:whatsappPulse 2.2s infinite;
+transition:.3s ease
+}
+
+.whatsapp-float svg{
+width:31px;
+height:31px;
+fill:#fff
+}
+
+.whatsapp-float:hover{
+transform:scale(1.1);
+box-shadow:
+0 10px 30px rgba(0,0,0,.5),
+0 0 25px rgba(37,211,102,.4)
+}
+
+.whatsapp-tooltip{
+position:absolute;
+right:72px;
+bottom:9px;
+background:#111;
+color:#fff;
+padding:9px 14px;
+border-radius:6px;
+white-space:nowrap;
+font-size:12px;
+font-weight:500;
+border:1px solid rgba(212,175,55,.4);
+opacity:0;
+visibility:hidden;
+transform:translateX(8px);
+transition:.25s ease
+}
+
+.whatsapp-float:hover .whatsapp-tooltip{
+opacity:1;
+visibility:visible;
+transform:translateX(0)
+}
+
+@keyframes whatsappPulse{
+0%{
+box-shadow:
+0 8px 25px rgba(0,0,0,.45),
+0 0 0 0 rgba(37,211,102,.45)
+}
+
+70%{
+box-shadow:
+0 8px 25px rgba(0,0,0,.45),
+0 0 0 12px rgba(37,211,102,0)
+}
+
+100%{
+box-shadow:
+0 8px 25px rgba(0,0,0,.45),
+0 0 0 0 rgba(37,211,102,0)
+}
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+header{
+padding:18px 12px
+}
+
+header h1{
+font-size:30px;
+letter-spacing:4px
+}
+
+nav a{
+margin:0 8px;
+font-size:12px
+}
+
+.hero{
+aspect-ratio:16/9;
+min-height:260px;
+background-size:cover
+}
+
+.hero a{
+left:50%;
+transform:translateX(-50%);
+white-space:nowrap;
+bottom:8%
+}
+
+.hero a:hover{
+transform:translateX(-50%) translateY(-2px)
+}
+
+.section{
+margin:45px auto
+}
+
+.section h2{
+font-size:31px
+}
+
+.grid{
+grid-template-columns:1fr
+}
+
+.whatsapp-float{
+width:55px;
+height:55px;
+right:17px;
+bottom:17px
+}
+
+.whatsapp-float svg{
+width:28px;
+height:28px
+}
+
+.whatsapp-tooltip{
+display:none
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div id="gold-particles" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header>
+
+<h1>AROMA VAULT</h1>
+
+<nav>
+<a href="home.html">Home</a>
+<a href="new arrival.html">New Arrivals</a>
+<a href="https://wa.me/923317744660" target="_blank">Contact</a>
+</nav>
+
+</header>
+
+
+<!-- HERO -->
+<div class="hero">
+
+<a href="#collection">
+Explore Fragrances →
+</a>
+
+</div>
+
+
+<!-- FEATURED PRODUCTS -->
+<section class="section" id="collection">
+
+<h2>Featured Fragrances</h2>
+
+<div class="grid">
+
+
+<!-- 1 -->
+<article class="card">
+
+<div class="pic">
+<img src="1.png" alt="Dior Sauvage Mountain">
+</div>
+
+<div class="brand">AROMAVAULT COLLECTION</div>
+
+<div class="name">
+Dior Sauvage Mountain Inspired Fragrance
+</div>
+
+<div class="price">
+Rs. 2,700
+</div>
+
+<div class="price-note">
+First Copy 
+</div>
+
+<a class="btn"
+href="buy-now.html?title=DiorSauvage Mountain Inspired Fragrance&price=2,700&img=1.png">
+Order Now
+</a>
+
+</article>
+
+
+<!-- 2 -->
+<article class="card">
+
+<div class="pic">
+<img src="2.png" alt=" Bleu De Chanel">
+</div>
+
+<div class="brand">AROMAVAULT COLLECTION</div>
+
+<div class="name">
+Bleu De Chanel Inspired Fragrance
+</div>
+
+<div class="price">
+Rs. 3,000
+</div>
+
+<div class="price-note">
+First Copy 
+</div>
+
+<a class="btn"
+href="buy-now.html?title=Bleu De Chanel Inspired Fragrance&price=3,000&img=2.png">
+Order Now
+</a>
+
+</article>
+
+
+<!-- 3 -->
+<article class="card">
+
+<div class="pic">
+<img src="3.png" alt="Creed Aventus">
+</div>
+
+<div class="brand">AROMAVAULT COLLECTION</div>
+
+<div class="name">
+Creed Aventus Inspired Fragrance
+</div>
+
+<div class="price">
+Rs. 2,700
+</div>
+
+<div class="price-note">
+First Copy 
+</div>
+
+<a class="btn"
+href="buy-now.html?title= Creed Aventus Inspired Fragrance&price=2,700&img=3.png">
+Order Now
+</a>
+
+</article>
+
+
+<!-- 4 -->
+<article class="card">
+
+<div class="pic">
+<img src="4.png" alt="Rasasi Hawas">
+</div>
+
+<div class="brand">AROMAVAULT COLLECTION</div>
+
+<div class="name">
+Rasasi Hawas Inspired Fragrance
+</div>
+
+<div class="price">
+Rs. 2,500
+</div>
+
+<div class="price-note">
+First Copy 
+</div>
+
+<a class="btn"
+href="buy-now.html?title=Rasasi Hawas Inspired Fragrance&price=2,500&img=4.png">
+Order Now
+</a>
+
+</article>
+
+
+<!-- 5 -->
+<article class="card">
+
+<div class="pic">
+<img src="5.png" alt="Tom Ford Tobacco Vanille">
+</div>
+
+<div class="brand">AROMAVAULT COLLECTION</div>
+
+<div class="name">
+Tom Ford Tobacco Vanille Inspired Fragrance
+</div>
+
+<div class="price">
+Rs. 3,500
+</div>
+
+<div class="price-note">
+First Copy 
+</div>
+
+<a class="btn"
+href="buy-now.html?title=Tom Ford Tobacco Vanille Inspired Fragrance&price=3,500&img=5.png">
+Order Now
+</a>
+
+</article>
+
+
+<!-- 6 -->
+<article class="card">
+
+<div class="pic">
+<img src="6.png" alt="1 Million (Paco Rabanne)">
+</div>
+
+<div class="brand">AROMAVAULT COLLECTION</div>
+
+<div class="name">
+1 Million (Paco Rabanne) Inspired Fragrance
+</div>
+
+<div class="price">
+Rs. 2,500
+</div>
+
+<div class="price-note">
+First Copy 
+</div>
+
+<a class="btn"
+href="buy-now.html?title=1 Million (Paco Rabanne) Inspired Fragrance&price=2,500&img=6.png">
+Order Now
+</a>
+
+</article>
+
+
+<!-- 7 -->
+<article class="card">
+
+<div class="pic">
+<img src="7.png" alt="VS Bombshell (Women)">
+</div>
+
+<div class="brand">AROMAVAULT COLLECTION</div>
+
+<div class="name">
+VS Bombshell (Women) Inspired Fragrance
+</div>
+
+<div class="price">
+Rs. 2,300
+</div>
+
+<div class="price-note">
+First Copy 
+</div>
+
+<a class="btn"
+href="buy-now.html?title=VS Bombshell (Women) Inspired Fragrance&price=2,300&img=7.png">
+Order Now
+</a>
+
+</article>
+
+
+<!-- 8 -->
+<article class="card">
+
+<div class="pic">
+<img src="8.png" alt="Coco Mademoiselle">
+</div>
+
+<div class="brand">AROMAVAULT COLLECTION</div>
+
+<div class="name">
+Coco Mademoiselle Inspired Fragrance
+</div>
+
+<div class="price">
+Rs. 2,700
+</div>
+
+<div class="price-note">
+First Copy 
+</div>
+
+<a class="btn"
+href="buy-now.html?title=Coco Mademoiselle Inspired Fragrance&price=2,700&img=8.png">
+Order Now
+</a>
+
+</article>
+
+
+<!-- 9 -->
+<article class="card">
+
+<div class="pic">
+<img src="9.png" alt="Gucci Bloom / Flora">
+</div>
+
+<div class="brand">AROMAVAULT COLLECTION</div>
+
+<div class="name">
+Gucci Bloom / Flora Inspired Fragrance
+</div>
+
+<div class="price">
+Rs. 2,500
+</div>
+
+<div class="price-note">
+First Copy 
+</div>
+
+<a class="btn"
+href="buy-now.html?title=Gucci Bloom / Flora Inspired Fragrance &price=2,500&img=9.png">
+Order Now
+</a>
+
+</article>
+
+
+</div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+© 2026 AromaVault — Luxury Scents, Made Accessible.
+</footer>
+
+
+<!-- WHATSAPP BUTTON -->
+<a
+href="https://wa.me/923317744660?text=Assalam%20o%20Alaikum%20AromaVault!%20Mujhe%20aapke%20fragrances%20ke%20bare%20mein%20maloomat%20chahiye."
+class="whatsapp-float"
+target="_blank"
+rel="noopener"
+aria-label="Chat with AromaVault on WhatsApp"
+>
+
+<svg viewBox="0 0 32 32" aria-hidden="true">
+
+<path d="M19.11 17.19c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.15-1.34-.79-.7-1.33-1.56-1.49-1.82-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.52-.45-.45-.61-.46h-.52c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.63 1.11 2.81.14.18 1.93 2.95 4.68 4.14.65.28 1.16.45 1.56.57.66.21 1.26.18 1.73.11.53-.08 1.58-.64 1.8-1.25.23-.61.23-1.13.16-1.25-.07-.11-.25-.18-.52-.32zM16.01 4.27c-6.49 0-11.77 5.28-11.77 11.77 0 2.07.54 4.09 1.57 5.86L4.14 27.2l5.43-1.63a11.72 11.72 0 0 0 6.44 1.9h.01c6.49 0 11.77-5.28 11.77-11.77S22.5 4.27 16.01 4.27zm0 21.27h-.01a9.46 9.46 0 0 1-4.82-1.33l-.35-.21-3.22.97.98-3.14-.23-.36a9.47 9.47 0 1 1 7.65 4.07z"/>
+
+</svg>
+
+<span class="whatsapp-tooltip">
+Need help? Chat with us 💬
+</span>
+
+</a>
+
+
+<!-- GOLD PARTICLES SCRIPT -->
+<script>
+
+const particleContainer =
+document.getElementById("gold-particles");
+
+for(let i=0;i<75;i++){
+
+const dot=document.createElement("span");
+
+dot.className="gold-dot";
+
+const s=Math.random();
+
+if(s<.28)
+dot.classList.add("small");
+
+else if(s>.9)
+dot.classList.add("large");
+
+dot.style.left=Math.random()*100+"%";
+
+dot.style.animationDuration =
+5+Math.random()*9+"s";
+
+dot.style.animationDelay =
+-Math.random()*12+"s";
+
+particleContainer.appendChild(dot);
+
+}
+
+</script>
+
+</body>
+</html>
