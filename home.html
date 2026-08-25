@@ -8,21 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Reset & Styling */
-        * {
-            box-sizing: border-box;
-        }
-
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
-        }
-
         body {
             font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
             background: #080706; /* AromaVault luxury black */
             color: #FFFFFF;
+            overflow-x: hidden;
         }
 
         /* HEADER: Premium Sticky Matte Header */
@@ -33,8 +25,7 @@
             text-align: center; 
             position: sticky;
             top: 0;
-            z-index: 1000;
-            width: 100%;
+            z-index: 100;
         }
         header h1 { 
             font-family: 'Bebas Neue', sans-serif;
@@ -45,7 +36,7 @@
         }
         nav { margin-top: 10px; }
         nav a { 
-            margin: 0 15px; 
+            margin: 0 20px; 
             text-decoration: none; 
             color: #A3A3A3; 
             font-weight: 500; 
@@ -58,7 +49,7 @@
             transform: scale(1.1); 
         }
 
-        /* SPARKS & NEON LINE EFFECT OVERLAY */
+        /* ⚡ SPARKS & NEON LINE EFFECT OVERLAY ⚡ */
         .spark-line-container {
             position: absolute;
             bottom: 0;
@@ -75,7 +66,7 @@
             top: 2px;
             left: 0;
             width: 100%;
-            height: 150px;
+            height: 150px; /* Jaha tak sparks girenge */
             pointer-events: none;
             overflow: hidden;
         }
@@ -94,6 +85,7 @@
             animation-delay: var(--delay);
         }
 
+        /* Sparks Falling Animation */
         @keyframes fallAndFade {
             0% {
                 top: 0;
@@ -110,11 +102,11 @@
             }
         }
 
-        /* AROMAVAULT PREMIUM PERFUME HERO / BILLBOARD */
+        /* ✨ AROMAVAULT PREMIUM PERFUME HERO */
         .home-billboard {
             width: 100%;
             height: min(720px, 78vh);
-            min-height: 480px;
+            min-height: 520px;
             background-image: url('111.png');
             background-position: center center;
             background-size: cover;
@@ -125,6 +117,7 @@
             box-shadow: inset 0 -80px 100px rgba(0,0,0,.45);
         }
 
+        /* Very subtle vignette only — the billboard artwork stays visible. */
         .home-billboard::after {
             content: '';
             position: absolute;
@@ -136,6 +129,22 @@
             z-index: 1;
         }
 
+        /* The generated billboard already contains its own text.
+           Keep this layer empty so old VibeWear text cannot cover it. */
+        .billboard-content {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .billboard-content h2,
+        .billboard-content p,
+        .billboard-content .cta-btn {
+            display: none;
+        }
+
+        /* Small optional floating CTA, positioned away from the artwork text. */
         .hero-shop-link {
             position: absolute;
             left: 5.5%;
@@ -165,226 +174,189 @@
             box-shadow: 0 8px 30px rgba(212,175,55,.28);
         }
 
-        /* PRODUCTS SECTION */
-        .products-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-        .section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 42px;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            border-left: 4px solid #D4AF37;
-            padding-left: 15px;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: #161616;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-        .product-img-box {
-            background: #0A0A0A;
-            border-radius: 8px;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-        .product-img-box img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-        .product-card:hover .product-img-box img {
-            transform: scale(1.05);
-        }
-        .product-brand {
-            color: #D4AF37;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-        .product-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0 0 8px 0;
-            color: #FFF;
-        }
-        .product-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: #FFF;
-            margin-bottom: 15px;
-        }
-        .shop-now-btn {
-            background: transparent;
-            color: #FFF;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s ease;
-            text-align: center;
-            box-sizing: border-box;
-            text-decoration: none;
-            display: block;
-        }
-        .shop-now-btn:hover {
-            background: #FFFFFF;
-            color: #0A0A0A;
-            border-color: #FFFFFF;
-        }
-
-        /* FIXED FLOATING WHATSAPP ICON */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25D366;
-            color: #FFF !important;
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            text-align: center;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-            z-index: 99999; /* Higher z-index to stay on top */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .whatsapp-float i {
-            font-size: 32px;
-            line-height: 1;
-            font-weight: 400;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1) rotate(8deg);
-            background-color: #128C7E;
-        }
-
-        /* Footer */
-        footer { 
-            background-color: #000; 
-            color: #666; 
-            text-align: center; 
-            padding: 30px; 
-            margin-top: 80px; 
-            font-size: 13px; 
-            border-top: 1px solid rgba(255,255,255,0.02); 
-        }
-
-        /* RESPONSIVE MOBILE FIX (MOBILE SCREEN ADJUSTMENTS) */
+        /* FINAL MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
+            html, body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden !important;
+            }
+
             header {
-                padding: 14px 10px 18px;
+                width: 100%;
+                padding: 14px 8px 17px;
+                overflow: hidden;
             }
+
             header h1 {
-                font-size: 30px;
+                font-size: clamp(27px, 8vw, 34px);
                 letter-spacing: 3px;
+                white-space: nowrap;
             }
+
             nav {
-                margin-top: 6px;
+                margin-top: 7px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 4px;
+                white-space: nowrap;
             }
+
             nav a {
                 margin: 0 6px;
                 font-size: 12px;
             }
 
-            /* Billboard Fix: Uses contain so sides never cut on phones */
+            /* Keep the billboard inside the phone width */
             .home-billboard {
-                height: 55vh;
-                min-height: 320px;
-                background-size: contain;
-                background-position: center top;
-                background-color: #080706;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                min-height: 0 !important;
+                aspect-ratio: 16 / 9;
+                background-size: 100% 100% !important;
+                background-position: center !important;
+                overflow: hidden !important;
             }
 
             .hero-shop-link {
-                left: 50%;
-                bottom: 8%;
-                transform: translateX(-50%);
-                padding: 10px 16px;
-                gap: 8px;
-                font-size: 11px;
-                letter-spacing: 1px;
+                left: 50% !important;
+                bottom: 5% !important;
+                transform: translateX(-50%) !important;
+                padding: 8px 12px !important;
+                gap: 5px !important;
+                font-size: 8px !important;
+                letter-spacing: .8px !important;
                 white-space: nowrap;
             }
 
-            .hero-shop-link:hover {
-                transform: translateX(-50%) translateY(-2px);
-            }
-
-            /* Products Grid */
+            /* Featured products */
             .products-section {
-                margin: 30px auto;
-                padding: 0 12px;
-            }
-            .section-title {
-                font-size: 28px;
-                margin-bottom: 20px;
-            }
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-            .product-card {
-                padding: 10px;
-            }
-            .product-img-box {
-                height: 170px;
-            }
-            .product-title {
-                font-size: 13px;
-            }
-            .product-price {
-                font-size: 15px;
-            }
-            .shop-now-btn {
-                padding: 8px 4px;
-                font-size: 10px;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 32px 0 !important;
+                padding: 0 10px !important;
             }
 
-            /* WhatsApp Button Fix for Mobile */
-            .whatsapp-float {
-                width: 52px;
-                height: 52px;
-                bottom: 50px;
-                right: 20px;
+            .section-title {
+                font-size: 29px !important;
+                line-height: 1.1;
+                margin: 0 0 20px !important;
+                padding-left: 9px !important;
+                border-left-width: 3px !important;
             }
-            .whatsapp-float i {
-                font-size: 35px;
+
+            .products-grid {
+                width: 100% !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 10px !important;
+            }
+
+            .product-card {
+                width: 100% !important;
+                min-width: 0 !important;
+                padding: 8px !important;
+                border-radius: 9px !important;
+                overflow: hidden;
+            }
+
+            .product-img-box {
+                width: 100% !important;
+                height: 155px !important;
+                margin-bottom: 8px !important;
+                border-radius: 6px !important;
+            }
+
+            .product-img-box img {
+                width: auto !important;
+                max-width: 88% !important;
+                max-height: 88% !important;
+            }
+
+            .product-brand {
+                font-size: 8px !important;
+                line-height: 1.2;
+                letter-spacing: .7px !important;
+                margin-bottom: 3px !important;
+            }
+
+            .product-title {
+                font-size: 12px !important;
+                line-height: 1.25 !important;
+                margin: 0 0 5px !important;
+                overflow-wrap: anywhere;
+            }
+
+            .product-price {
+                font-size: 14px !important;
+                margin-bottom: 7px !important;
+            }
+
+            .shop-now-btn {
+                width: 100% !important;
+                padding: 8px 4px !important;
+                font-size: 8px !important;
+                letter-spacing: .5px !important;
+            }
+
+            .whatsapp-float {
+                width: 50px !important;
+                height: 50px !important;
+                right: 12px !important;
+                bottom: 12px !important;
+                font-size: 25px !important;
+                z-index: 99999 !important;
+            }
+
+            footer {
+                margin-top: 40px !important;
+                padding: 22px 10px !important;
+                font-size: 10px !important;
             }
         }
+
+        @media (max-width: 380px) {
+            header h1 {
+                font-size: 27px !important;
+                letter-spacing: 2.5px !important;
+            }
+
+            nav a {
+                margin: 0 4px !important;
+                font-size: 11px !important;
+            }
+
+            .products-section {
+                padding: 0 8px !important;
+            }
+
+            .products-grid {
+                gap: 8px !important;
+            }
+
+            .product-card {
+                padding: 7px !important;
+            }
+
+            .product-img-box {
+                height: 140px !important;
+            }
+
+            .product-title {
+                font-size: 11px !important;
+            }
+
+            .product-price {
+                font-size: 13px !important;
+            }
+
+            .shop-now-btn {
+                font-size: 7.5px !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -402,6 +374,7 @@
     </header>
 
     <div class="home-billboard" aria-label="AromaVault premium fragrance billboard">
+        <div class="billboard-content"></div>
         <a href="#collection" class="hero-shop-link">Shop Fragrances <span>→</span></a>
     </div>
 
@@ -521,9 +494,8 @@
         </div>
     </div>
 
-    <!-- FLOATING WHATSAPP BUTTON -->
     <a href="https://wa.me/923317744660" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
+        <i class="fab fa-whatsapp"></i>
     </a>
 
     <footer>
@@ -532,16 +504,18 @@
 
     <script>
         const container = document.getElementById('sparksContainer');
-        const sparkCount = 40;
+        const sparkCount = 40; // Total kitne sparks girenge
 
         for (let i = 0; i < sparkCount; i++) {
             const spark = document.createElement('div');
             spark.classList.add('spark');
             
+            // Randomly screen par spread karne ke liye
             spark.style.left = `${Math.random() * 100}%`;
             
-            const duration = 1 + Math.random() * 1.5;
-            const delay = Math.random() * 2;
+            // Random timing patterns for realism
+            const duration = 1 + Math.random() * 1.5; // 1s to 2.5s
+            const delay = Math.random() * 2; // 0s to 2s
             
             spark.style.setProperty('--fall-duration', `${duration}s`);
             spark.style.setProperty('--delay', `${delay}s`);
